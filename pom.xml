@@ -105,6 +105,15 @@
 		</pluginManagement>
 	</build>
 
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
 	<profiles>
 		<profile>
 			<!-- Jenkins 整合建置時使用的 Profile，會進行多項靜態程式碼分析。 -->
