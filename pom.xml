@@ -116,18 +116,6 @@
 				</property>
 			</activation>
 
-			<modules>
-				<module>bii-api</module>
-				<module>bii-core</module>
-				<module>bii-web</module>
-				<module>bii-webservice</module>
-			</modules>
-
-			<properties>
-				<environment>continuous_integration</environment>
-				<environment.short>ci</environment.short>
-			</properties>
-
 			<build>
 				<plugins>
 					<plugin>
@@ -146,8 +134,7 @@
 									<goal>test</goal>
 								</goals>
 								<configuration>
-									<reportsDirectory>${project.build.directory}/surefire-reports/integration-test
-									</reportsDirectory>
+									<reportsDirectory>${project.build.directory}/surefire-reports/integration-test</reportsDirectory>
 								</configuration>
 							</execution>
 						</executions>
