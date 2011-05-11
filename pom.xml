@@ -1,0 +1,134 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cht.commons</groupId>
+	<artifactId>cht-commons-parent</artifactId>
+	<version>1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>CHT Common - Parent</name>
+	<description>中華電信共用函式庫 Maven 基礎設定。</description>
+
+	<inceptionYear>2011</inceptionYear>
+
+	<organization>
+		<name>Chunghwa Telecom Co., Ltd.</name>
+		<url>http://www.cht.com.tw/</url>
+	</organization>
+
+	<properties>
+		<java.version>1.6</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<scm>
+		<connection>scm:svn:http://10.144.113.114/svn/common/trunk/cht-commons-parent</connection>
+		<developerConnection>scm:svn:http://10.144.113.114/svn/common/trunk/cht-commons-parent</developerConnection>
+		<url>http://10.144.113.114/svn</url>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>beta</id>
+			<name>黃培棠</name>
+			<email>beta@cht.com.tw</email>
+			<organization>中華電信研究所</organization>
+			<organizationUrl>http://www.chttl.com.tw/</organizationUrl>
+			<timezone>+8</timezone>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<showDeprecation>true</showDeprecation>
+						<showWarnings>true</showWarnings>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.5</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.8.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.3.1</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.8</version>
+					<configuration>
+						<charset>${project.build.sourceEncoding}</charset>
+						<bottom><![CDATA[版權所有 &copy; {inceptionYear}-{currentYear} {organizationName}。保留所有權利。]]></bottom>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>cht_public</id>
+			<name>CHT Public Repository</name>
+			<url>http://10.144.113.114/nexus/content/repositories/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>interval:5</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>cht_releases</id>
+			<name>CHT Releases Repository</name>
+			<url>http://10.144.113.114/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>cht_snapshots</id>
+			<name>CHT Snapshots Repository</name>
+			<url>http://10.144.113.114/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>
