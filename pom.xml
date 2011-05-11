@@ -7,12 +7,13 @@
 	<packaging>pom</packaging>
 
 	<name>CHT Common - Parent</name>
-	<description>中華電信共用函式庫 Maven 基礎設定。</description>
+	<description>中華電信共用函式庫 Maven 基礎設定，
+各模組都共用的設定請填寫在此，不要四處分散，方便管理。</description>
 
 	<inceptionYear>2011</inceptionYear>
 
 	<organization>
-		<name>Chunghwa Telecom Co., Ltd.</name>
+		<name>中華電信股份有限公司</name>
 		<url>http://www.cht.com.tw/</url>
 	</organization>
 
@@ -103,6 +104,133 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<profiles>
+		<profile>
+			<!-- Jenkins 整合建置時使用的 Profile，會進行多項靜態程式碼分析。 -->
+			<id>continuous_integration</id>
+			<activation>
+				<property>
+					<!-- 預設會設定 BUILD_NUMBER 屬性值，我們可以據此啟動本 profile。 -->
+					<name>BUILD_NUMBER</name>
+				</property>
+			</activation>
+
+			<modules>
+				<module>bii-api</module>
+				<module>bii-core</module>
+				<module>bii-web</module>
+				<module>bii-webservice</module>
+			</modules>
+
+			<properties>
+				<environment>continuous_integration</environment>
+				<environment.short>ci</environment.short>
+			</properties>
+
+			<build>
+				<plugins>
+					<plugin>
+						<!-- 避免 Jenkins 在跑 Code Coverage 的時候結果都會多算一次。 -->
+						<!-- 詳情請參考: http://issues.jenkins-ci.org/browse/JENKINS-2068 -->
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<reportsDirectory>${project.build.directory}/surefire-reports/test
+							</reportsDirectory>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+								<configuration>
+									<reportsDirectory>${project.build.directory}/surefire-reports/integration-test
+									</reportsDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>findbugs-maven-plugin</artifactId>
+						<version>2.3.2</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>findbugs</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<findbugsXmlOutput>true</findbugsXmlOutput>
+							<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+							<xmlOutput>true</xmlOutput>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>cobertura-maven-plugin</artifactId>
+						<version>2.5</version>
+						<executions>
+							<execution>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>cobertura</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<encoding>${project.build.sourceEncoding}</encoding>
+							<formats>
+								<format>xml</format>
+							</formats>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-pmd-plugin</artifactId>
+						<version>2.5</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>pmd</goal>
+									<goal>cpd</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<linkXref>true</linkXref>
+							<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+							<targetJdk>${java.version}</targetJdk>
+							<excludes>
+								<exclude>**/generated/**/*</exclude>
+							</excludes>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
+						<version>2.6</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>checkstyle</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<excludes>**/generated/**/*</excludes>
+							<configLocation>http://web.tax/tax/fdc_checks.xml</configLocation>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 	<repositories>
 		<repository>
