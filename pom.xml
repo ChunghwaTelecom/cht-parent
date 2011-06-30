@@ -28,20 +28,6 @@
 		<url>http://10.144.113.114/svn</url>
 	</scm>
 
-	<developers>
-		<developer>
-			<id>beta</id>
-			<name>黃培棠</name>
-			<email>beta@cht.com.tw</email>
-			<organization>中華電信研究所</organization>
-			<organizationUrl>http://www.chttl.com.tw/</organizationUrl>
-			<timezone>+8</timezone>
-			<roles>
-				<role>developer</role>
-			</roles>
-		</developer>
-	</developers>
-
 	<build>
 		<pluginManagement>
 			<plugins>
