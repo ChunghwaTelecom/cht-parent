@@ -214,7 +214,7 @@
             </releases>
             <snapshots>
                 <enabled>true</enabled>
-                <updatePolicy>interval:5</updatePolicy>
+                <updatePolicy>interval:15</updatePolicy>
             </snapshots>
         </repository>
     </repositories>
