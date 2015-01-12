@@ -6,7 +6,7 @@
     <version>2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>CHT Common - Parent</name>
+    <name>CHT - Parent</name>
     <description><![CDATA[中華電信專案 Maven 基礎設定，各模組都共用的設定請填寫在此，不要四處分散，方便管理。]]></description>
 
     <inceptionYear>2011</inceptionYear>
@@ -16,24 +16,53 @@
         <url>http://www.cht.com.tw/</url>
     </organization>
 
+    <licenses>
+        <license>
+            <name>中華電信股份有限公司 版權所有</name>
+            <comments><![CDATA[
+                本資料為中華電信股份有限公司專有之財產，非經書面許可，不准透露或使用本資料，亦不准複印，複製或轉變成任何其他形式使用。
+                The information contained herein is the exclusive property of NTA and shall not be distributed, reproduced, or disclosed in whole or in part without prior written permission of Chunghwa Telecom. Co., Ltd.
+            ]]></comments>
+        </license>
+    </licenses>
+
+    <prerequisites>
+        <maven>3.0.4</maven>
+    </prerequisites>
+
     <properties>
-        <java.version>1.6</java.version>
+        <java.version>1.7</java.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <scm>
-        <connection>scm:svn:http://10.144.113.114/svn/common/trunk/cht-commons-parent</connection>
-        <developerConnection>scm:svn:http://10.144.113.114/svn/common/trunk/cht-commons-parent</developerConnection>
-        <url>http://10.144.113.114/svn</url>
+        <url>https://github.com/ChunghwaTelecom/cht-parent</url>
+        <connection>scm:git:https://github.com/ChunghwaTelecom/cht-parent.git</connection>
+        <developerConnection>scm:git:https://github.com/ChunghwaTelecom/cht-parent.git</developerConnection>
     </scm>
 
     <build>
         <pluginManagement>
             <plugins>
+                <!-- Default Lifecycle 通用外掛程式 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.6.1</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.7</version>
+                </plugin>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.0</version>
+                    <version>3.2</version>
                     <configuration>
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <source>${java.version}</source>
@@ -42,20 +71,27 @@
                         <showWarnings>true</showWarnings>
                     </configuration>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>2.6</version>
-                </plugin>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.13</version>
+                    <version>2.18.1</version>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.10.1</version>
+                    <configuration>
+                        <charset>${project.build.sourceEncoding}</charset>
+                        <bottom><![CDATA[版權所有 &#169; {inceptionYear}&#x2013;{currentYear} {organizationName}。保留所有權利。]]></bottom>
+                    </configuration>
+                </plugin>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.4</version>
+                    <version>2.5</version>
                     <configuration>
                         <archive>
                             <manifest>
@@ -64,52 +100,49 @@
                         </archive>
                     </configuration>
                 </plugin>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>2.9</version>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.5</version>
                     <configuration>
-                        <charset>${project.build.sourceEncoding}</charset>
-                        <bottom><![CDATA[版權所有 &copy; {inceptionYear}-{currentYear} {organizationName}。保留所有權利。]]></bottom>
+                        <archive>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                        </archive>
+                        <!-- web.xml is not mandatory since JavaEE 5 -->
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
                     </configuration>
                 </plugin>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <version>1.7</version>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.18.1</version>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+
+                <!-- Site Lifecycle 外掛程式 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.2</version>
-                    <configuration>
-                        <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-                    </configuration>
+                    <version>3.4</version>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>1.9.5</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <version>1.3</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 
     <profiles>
         <profile>
@@ -127,7 +160,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>findbugs-maven-plugin</artifactId>
-                        <version>2.5.2</version>
+                        <version>3.0.0</version>
                         <executions>
                             <execution>
                                 <goals>
@@ -142,28 +175,35 @@
                         </configuration>
                     </plugin>
                     <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>cobertura-maven-plugin</artifactId>
-                        <version>2.5.2</version>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>0.7.2.201409121644</version>
                         <executions>
                             <execution>
-                                <phase>integration-test</phase>
+                                <id>default-prepare-agent</id>
                                 <goals>
-                                    <goal>cobertura</goal>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>default-report</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>default-check</id>
+                                <goals>
+                                    <goal>check</goal>
                                 </goals>
                             </execution>
                         </executions>
-                        <configuration>
-                            <encoding>${project.build.sourceEncoding}</encoding>
-                            <formats>
-                                <format>xml</format>
-                            </formats>
-                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-pmd-plugin</artifactId>
-                        <version>3.0</version>
+                        <version>3.3</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>
@@ -185,7 +225,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-checkstyle-plugin</artifactId>
-                        <version>2.10</version>
+                        <version>2.13</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>
@@ -196,7 +236,7 @@
                         </executions>
                         <configuration>
                             <excludes>**/generated/**/*</excludes>
-                            <configLocation>http://web.tax/tax/fdc_checks.xml</configLocation>
+                            <configLocation>http://chunghwatelecom.github.io/rules/cht/checkstyle_checks.xml</configLocation>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -206,29 +246,41 @@
 
     <repositories>
         <repository>
-            <id>cht_public</id>
-            <name>CHT Public Repository</name>
-            <url>http://10.144.113.114/nexus/content/repositories/public/</url>
+            <id>cht-releases-repo</id>
+            <name>ChunghwaTelecom Releases Repository</name>
+            <url>http://chunghwatelecom.github.io/repos/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>cht-snapshots-repo</id>
+            <name>ChunghwaTelecom Snapshots Repository</name>
+            <url>http://chunghwatelecom.github.io/repos/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>interval:60</updatePolicy>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>cht-thirdparty-repo</id>
+            <name>ChunghwaTelecom Third Party Repository</name>
+            <url>http://chunghwatelecom.github.io/repos/thirdparty</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
             <snapshots>
                 <enabled>true</enabled>
-                <updatePolicy>interval:15</updatePolicy>
+                <updatePolicy>interval:60</updatePolicy>
             </snapshots>
         </repository>
     </repositories>
-
-    <distributionManagement>
-        <repository>
-            <id>cht_releases</id>
-            <name>CHT Releases Repository</name>
-            <url>http://10.144.113.114/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>cht_snapshots</id>
-            <name>CHT Snapshots Repository</name>
-            <url>http://10.144.113.114/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>
