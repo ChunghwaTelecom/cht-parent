@@ -1,13 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.cht.commons</groupId>
-    <artifactId>cht-commons-parent</artifactId>
+    <groupId>com.cht</groupId>
+    <artifactId>cht-parent</artifactId>
     <version>2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>CHT Common - Parent</name>
-    <description><![CDATA[中華電信共用函式庫 Maven 基礎設定，各模組都共用的設定請填寫在此，不要四處分散，方便管理。]]></description>
+    <description><![CDATA[中華電信專案 Maven 基礎設定，各模組都共用的設定請填寫在此，不要四處分散，方便管理。]]></description>
 
     <inceptionYear>2011</inceptionYear>
 
