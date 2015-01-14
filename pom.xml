@@ -230,7 +230,8 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-pmd-plugin</artifactId>
-                        <version>3.3</version>
+                        <!-- 3.2, 3.3 有編碼問題: https://jira.codehaus.org/browse/MPMD-193 -->
+                        <version>3.1</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>
