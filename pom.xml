@@ -38,9 +38,10 @@
     </properties>
 
     <scm>
-        <url>https://github.com/ChunghwaTelecom/cht-parent</url>
-        <connection>scm:git:https://github.com/ChunghwaTelecom/cht-parent.git</connection>
-        <developerConnection>scm:git:https://github.com/ChunghwaTelecom/cht-parent.git</developerConnection>
+        <url>http://192.168.31.166/cht/cht-parent</url>
+        <connection>scm:git:http://192.168.31.166/cht/cht-parent.git</connection>
+        <developerConnection>scm:git:http://192.168.31.166/cht/cht-parent.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
 
     <build>
@@ -162,6 +163,20 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
                     <version>3.4</version>
+                </plugin>
+
+                <!-- unleash 發版外掛程式 -->
+                <plugin>
+                    <groupId>com.itemis.maven.plugins</groupId>
+                    <artifactId>unleash-maven-plugin</artifactId>
+                    <version>2.6.0</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.itemis.maven.plugins</groupId>
+                            <artifactId>unleash-scm-provider-git</artifactId>
+                            <version>2.1.0</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -302,7 +317,7 @@
         <repository>
             <id>cht-releases-repo</id>
             <name>ChunghwaTelecom Releases Repository</name>
-            <url>http://chunghwatelecom.github.io/repos/releases</url>
+            <url>http://192.168.30.95/nexus/content/repositories/cht-releases</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -314,7 +329,7 @@
         <repository>
             <id>cht-snapshots-repo</id>
             <name>ChunghwaTelecom Snapshots Repository</name>
-            <url>http://chunghwatelecom.github.io/repos/snapshots</url>
+            <url>http://192.168.30.95/nexus/content/repositories/cht-snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -327,7 +342,7 @@
         <repository>
             <id>cht-thirdparty-repo</id>
             <name>ChunghwaTelecom Third Party Repository</name>
-            <url>http://chunghwatelecom.github.io/repos/thirdparty</url>
+            <url>http://192.168.30.95/nexus/content/repositories/cht-thirdparty</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
