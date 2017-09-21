@@ -383,15 +383,18 @@
                         <version>${maven-checkstyle-plugin.version}</version>
                         <executions>
                             <execution>
-                                <phase>package</phase>
+                                <phase>validate</phase>
                                 <goals>
-                                    <goal>checkstyle</goal>
+                                    <goal>check</goal>
                                 </goals>
                             </execution>
                         </executions>
                         <configuration>
                             <excludes>**/generated/**/*</excludes>
                             <configLocation>http://chunghwatelecom.github.io/rules/cht/checkstyle_checks.xml</configLocation>
+                            <consoleOutput>true</consoleOutput>
+                            <failOnViolation>false</failOnViolation>
+                            <failsOnError>false</failsOnError>
                         </configuration>
                     </plugin>
                 </plugins>
