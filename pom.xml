@@ -395,7 +395,18 @@
                             <consoleOutput>true</consoleOutput>
                             <failOnViolation>false</failOnViolation>
                             <failsOnError>false</failsOnError>
+                            <!-- TODO fixme -->
+                            <skip>true</skip>
                         </configuration>
+                        <!--
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.puppycrawl.tools</groupId>
+                                <artifactId>checkstyle</artifactId>
+                                <version>8.2</version>
+                            </dependency>
+                        </dependencies>
+                        -->
                     </plugin>
                 </plugins>
             </build>
