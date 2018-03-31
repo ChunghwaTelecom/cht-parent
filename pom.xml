@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.cht</groupId>
     <artifactId>cht-parent</artifactId>
-    <version>3</version>
+    <version>4-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>CHT - Parent</name>
@@ -30,7 +30,7 @@
         <url>http://192.168.31.166/cht/cht-parent</url>
         <connection>scm:git:http://192.168.31.166/cht/cht-parent.git</connection>
         <developerConnection>scm:git:http://192.168.31.166/cht/cht-parent.git</developerConnection>
-        <tag>v3</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
