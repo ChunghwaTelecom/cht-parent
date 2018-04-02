@@ -352,6 +352,25 @@
             </activation>
 
             <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <configuration>
+                                <argLine>@{argLine} -Dfile.encoding=${project.build.sourceEncoding}</argLine>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-failsafe-plugin</artifactId>
+                            <configuration>
+                                <argLine>@{argLine} -Dfile.encoding=${project.build.sourceEncoding}</argLine>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+
                 <plugins>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
@@ -382,9 +401,9 @@
                                 </goals>
                             </execution>
                             <execution>
-                                <id>default-report</id>
+                                <id>default-report-aggregate</id>
                                 <goals>
-                                    <goal>report</goal>
+                                    <goal>report-aggregate</goal>
                                 </goals>
                             </execution>
                             <execution>
@@ -399,6 +418,7 @@
                                     <goal>check</goal>
                                 </goals>
                                 <configuration>
+                                    <haltOnFailure>false</haltOnFailure>
                                     <rules>
                                         <rule>
                                             <element>BUNDLE</element>
@@ -412,22 +432,6 @@
                                         </rule>
                                     </rules>
                                 </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>default-integration-test</id>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                </goals>
                             </execution>
                         </executions>
                     </plugin>
