@@ -71,7 +71,7 @@
         <maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
         <maven-war-plugin.version>2.6</maven-war-plugin.version>
         <unleash-maven-plugin.version>2.6.0</unleash-maven-plugin.version>
-        <versions-maven-plugin.version>2.4</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.5</versions-maven-plugin.version>
     </properties>
 
     <build>
