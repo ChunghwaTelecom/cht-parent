@@ -60,6 +60,7 @@
         <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
         <maven-invoker-plugin.version>1.10</maven-invoker-plugin.version>
         <maven-jar-plugin.version>2.6</maven-jar-plugin.version>
+        <maven-jarsigner-plugin.version>1.4</maven-jarsigner-plugin.version>
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
         <maven-pmd-plugin.version>3.8</maven-pmd-plugin.version>
@@ -248,6 +249,12 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-invoker-plugin</artifactId>
                     <version>${maven-invoker-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jarsigner-plugin</artifactId>
+                    <version>${maven-jarsigner-plugin.version}</version>
                 </plugin>
 
                 <plugin>
