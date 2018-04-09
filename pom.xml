@@ -42,6 +42,8 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
+        <dependency-check-format>XML</dependency-check-format>
+
         <!-- plugin versions -->
         <build-helper-maven-plugin.version>1.12</build-helper-maven-plugin.version>
         <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
@@ -74,6 +76,7 @@
         <maven-war-plugin.version>2.6</maven-war-plugin.version>
         <unleash-maven-plugin.version>2.6.0</unleash-maven-plugin.version>
         <versions-maven-plugin.version>2.5</versions-maven-plugin.version>
+        <dependency-check-maven.version>3.1.2</dependency-check-maven.version>
     </properties>
 
     <build>
@@ -484,6 +487,14 @@
                             </dependency>
                         </dependencies>
                         -->
+                    </plugin>
+                    <plugin>
+                        <groupId>org.owasp</groupId>
+                        <artifactId>dependency-check-maven</artifactId>
+                        <version>${dependency-check-maven.version}</version>
+                        <configuration>
+                            <format>${dependency-check-format}</format>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
