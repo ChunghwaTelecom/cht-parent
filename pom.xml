@@ -494,6 +494,8 @@
                         <version>${dependency-check-maven.version}</version>
                         <configuration>
                             <format>${dependency-check-format}</format>
+                            <!-- temporary workaround for https://github.com/jeremylong/DependencyCheck/issues/1394 -->
+                            <retireJsAnalyzerEnabled>false</retireJsAnalyzerEnabled>
                         </configuration>
                     </plugin>
                 </plugins>
