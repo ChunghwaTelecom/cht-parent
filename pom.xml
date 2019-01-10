@@ -494,6 +494,7 @@
                         <version>${dependency-check-maven.version}</version>
                         <configuration>
                             <format>${dependency-check-format}</format>
+                            <skipSystemScope>true</skipSystemScope><!-- https://github.com/jeremylong/DependencyCheck/issues/1574 -->
                         </configuration>
                     </plugin>
                 </plugins>
